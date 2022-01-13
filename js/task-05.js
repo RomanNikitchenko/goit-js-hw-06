@@ -7,8 +7,8 @@ textInput.addEventListener("input", (event) => {
 
     if (!event.currentTarget.value) {
         output.textContent = withoutInput;
-    } else { 
+    } else {
         output.textContent = event.currentTarget.value;
-    }
+    };
     
 });
