@@ -14,14 +14,15 @@ const boxes = document.querySelector("#boxes");
   
   const result = [];
   
-  for (let i = 1; i <= length; i++) {
+  for (let i = 0; i <= length - 1; i++) {
     const blockElement = document.createElement("div");
-    const multiplicationСycle = 30 * i;
-    console.log(multiplicationСycle);
+    const multiplicationСycle = 30 + i * 10;
+
     blockElement.classList.add("boxes_item");
     blockElement.style.backgroundColor = getRandomHexColor();
     blockElement.style.width = `${multiplicationСycle}px`;
     blockElement.style.height = `${multiplicationСycle}px`;
+
     result.push(blockElement);
   }
 
