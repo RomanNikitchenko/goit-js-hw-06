@@ -6,6 +6,7 @@ const items = document.querySelectorAll('.list li');
 const button = document.querySelector('button');
 
 let filterName = 'HTML';
+let page = 0;
 let limit = 3;
 let disabled = false;
 
@@ -23,10 +24,11 @@ list.addEventListener('click', e => {
   if (e.target.tagName !== 'LI') return;
 
   filterName = e.target.dataset.source;
-
+  
+  page = 0;
   limit = 3;
 
-  const markup = elementsByFilter({ filterName, limit });
+  const markup = elementsByFilter({ filterName, page, limit });
   
   listImg.innerHTML = markup;
 
@@ -53,18 +55,19 @@ button.addEventListener('click', () => {
 
   setTimeout(() => disabled = false, 500);
 
+  page += 3;
   limit += 3;
 
-  const markup = elementsByFilter({ filterName, limit });
-  listImg.innerHTML = markup;
+  const markup = elementsByFilter({ filterName, page, limit });
+  listImg.insertAdjacentHTML("beforeend", markup);
 });
 
-const elementsByFilter = ({ filterName, limit }) => {
+const elementsByFilter = ({ filterName, page, limit }) => {
   const itemsFilter = galleryItems.filter(({ description }) => description === filterName);
-  const itemsFilterSlice = itemsFilter.slice(0, limit).map(({ title }) => `<li>${title}</li>`).join('');
+  const itemsFilterSlice = itemsFilter.slice(page, limit).map(({ title }) => `<li>${title}</li>`).join('');
   itemsFilter.length <= limit ? button.setAttribute("disabled", "disabled") : button.removeAttribute("disabled");
   return itemsFilterSlice;
 };
 
-const markup = elementsByFilter({ filterName, limit });
+const markup = elementsByFilter({ filterName, page, limit });
 listImg.innerHTML = markup;
