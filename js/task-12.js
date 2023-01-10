@@ -7,10 +7,21 @@ const button = document.querySelector('button');
 
 let filterName = 'HTML';
 let limit = 3;
+let disabled = false;
 
 //navigation menu
 list.addEventListener('click', e => {
   e.preventDefault();
+
+  // не больше одного клика в 1000
+  if (disabled) {
+    return;
+  }
+  disabled = true;
+  setTimeout(() => {
+    disabled = false;
+  }, 1000);
+
   if (e.target.tagName !== 'LI') return;
 
   filterName = e.target.dataset.source;
@@ -34,6 +45,16 @@ function highlight(li) {
 }
 
 button.addEventListener('click', () => {
+  if (disabled) {
+    return;
+  }
+
+  disabled = true;
+
+  setTimeout(() => {
+    disabled = false;
+  }, 1000);
+
   limit += 3;
   const markup = elementsByFilter({ filterName, limit });
   listImg.innerHTML = markup;
