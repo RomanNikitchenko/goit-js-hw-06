@@ -1,7 +1,7 @@
 import { galleryItems } from './gallery-items.js';
 
 const list = document.querySelector('.list');
-const listImg = document.querySelector('listImg');
+const listImg = document.querySelector('.listImg');
 const items = document.querySelectorAll('.list li');
 const button = document.querySelector('button');
 
@@ -16,7 +16,9 @@ list.addEventListener('click', e => {
   filterName = e.target.dataset.source;
   limit = 3;
 
-  listImg.innerHTML = elementsByFilter({ filterName, limit });
+  const markup = elementsByFilter({ filterName, limit });
+  listImg.innerHTML = markup;
+
   highlight(e.target);
 });
 
@@ -33,7 +35,8 @@ function highlight(li) {
 
 button.addEventListener('click', () => {
   limit += 3;
-  listImg.innerHTML = elementsByFilter({ filterName, limit });
+  const markup = elementsByFilter({ filterName, limit });
+  listImg.innerHTML = markup;
 });
 
 const elementsByFilter = ({ filterName, limit }) => {
@@ -50,4 +53,5 @@ const elementsByFilter = ({ filterName, limit }) => {
     .join('');
 };
 
-console.log(elementsByFilter({ filterName, limit }));
+const markup = elementsByFilter({ filterName, limit });
+listImg.innerHTML = markup;
