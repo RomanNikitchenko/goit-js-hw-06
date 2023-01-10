@@ -43,10 +43,10 @@ const elementsByFilter = ({ filterName, limit }) => {
   return galleryItems
     .filter(({ description }) => description === filterName)
     .slice(0, limit)
-    .map(({ description }) => {
+    .map(({ title }) => {
       return `
         <li>
-          ${description}
+          ${title}
         </li>
         `;
     })
