@@ -14,20 +14,20 @@ list.addEventListener('click', e => {
   e.preventDefault();
 
   // не больше одного клика в 500 м/с
-  if (disabled) {
-    return;
-  }
+  if (disabled) return;
+
   disabled = true;
-  setTimeout(() => {
-    disabled = false;
-  }, 500);
+
+  setTimeout(() => disabled = false, 500);
 
   if (e.target.tagName !== 'LI') return;
 
   filterName = e.target.dataset.source;
+
   limit = 3;
 
   const markup = elementsByFilter({ filterName, limit });
+  
   listImg.innerHTML = markup;
 
   highlight(e.target);
@@ -45,16 +45,16 @@ function highlight(li) {
 }
 
 button.addEventListener('click', () => {
+
   // не больше одного клика в 500 м/с
-  if (disabled) {
-    return;
-  }
+  if (disabled) return;
+
   disabled = true;
-  setTimeout(() => {
-    disabled = false;
-  }, 500);
+
+  setTimeout(() => disabled = false, 500);
 
   limit += 3;
+
   const markup = elementsByFilter({ filterName, limit });
   listImg.innerHTML = markup;
 });
