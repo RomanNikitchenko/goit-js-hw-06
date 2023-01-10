@@ -13,7 +13,7 @@ let disabled = false;
 list.addEventListener('click', e => {
   e.preventDefault();
 
-  // не больше одного клика в 1000
+  // не больше одного клика в 500 м/с
   if (disabled) {
     return;
   }
@@ -45,6 +45,7 @@ function highlight(li) {
 }
 
 button.addEventListener('click', () => {
+  // не больше одного клика в 500 м/с
   if (disabled) {
     return;
   }
