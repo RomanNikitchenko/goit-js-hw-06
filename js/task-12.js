@@ -49,9 +49,7 @@ button.addEventListener('click', () => {
   if (disabled) {
     return;
   }
-
   disabled = true;
-
   setTimeout(() => {
     disabled = false;
   }, 500);
@@ -62,17 +60,10 @@ button.addEventListener('click', () => {
 });
 
 const elementsByFilter = ({ filterName, limit }) => {
-  return galleryItems
-    .filter(({ description }) => description === filterName)
-    .slice(0, limit)
-    .map(({ title }) => {
-      return `
-        <li>
-          ${title}
-        </li>
-        `;
-    })
-    .join('');
+  const itemsFilter = galleryItems.filter(({ description }) => description === filterName);
+  const itemsFilterSlice = itemsFilter.slice(0, limit).map(({ title }) => `<li>${title}</li>`).join('');
+  itemsFilter.length <= limit ? button.setAttribute("disabled", "disabled") : button.removeAttribute("disabled");
+  return itemsFilterSlice;
 };
 
 const markup = elementsByFilter({ filterName, limit });
