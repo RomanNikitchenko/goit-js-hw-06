@@ -20,7 +20,7 @@ list.addEventListener('click', e => {
   disabled = true;
   setTimeout(() => {
     disabled = false;
-  }, 1000);
+  }, 500);
 
   if (e.target.tagName !== 'LI') return;
 
@@ -53,7 +53,7 @@ button.addEventListener('click', () => {
 
   setTimeout(() => {
     disabled = false;
-  }, 1000);
+  }, 500);
 
   limit += 3;
   const markup = elementsByFilter({ filterName, limit });
