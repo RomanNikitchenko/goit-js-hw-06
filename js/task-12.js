@@ -60,17 +60,16 @@ button.addEventListener('click', () => {
 
 const elementsByFilter = async ({ filterName, page, limit }) => {
   const itemsFilter = await galleryItems.filter(({ f }) => f.includes(filterName));
-  const itemsFilterSlice = await itemsFilter
+  const itemsFilterSlice = itemsFilter
     .slice(page, limit)
     .map(({ preview, original, description }) => {
       return `
         <a class="gallery__item" href="${original}">
-            <img class="gallery__image" src="${preview}" alt="${description}"/>
+            <img class="gallery__image" data-source="${original}" src="${preview}" alt="${description}" title="Beautiful Image"/>
         </a>
-        `;
+      `
     })
     .join('');
-
   itemsFilter.length <= limit
     ? button.setAttribute('disabled', 'disabled')
     : button.removeAttribute('disabled');
@@ -96,9 +95,12 @@ gallery.addEventListener('click', evt => {
   if (!evt.target.classList.contains('gallery__image')) {
     return;
   }
+
+  displaysModal(evt.target.dataset.source);
 });
 
-new SimpleLightbox('.gallery a', {
-  captionsData: 'alt',
-  captionDelay: 250,
-});
+function displaysModal(image) {
+    basicLightbox.create(`
+		<img width="1400" height="900" src="${image}">
+	`).show();
+}
