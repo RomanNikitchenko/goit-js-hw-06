@@ -1,111 +1,37 @@
 export const galleryItems = [
-  //HTML 6 items
+  //vinirs 1 items
   {
-    title: '1HTML',
-    description: 'HTML',
+    preview: 'img/gallery/tooth-1670434_640.jpg',
+    original: 'img/gallery/tooth-1670434_1280.jpg',
+    description: 'vinirs',
+    f: ['all', 'vinirs'],
   },
+  //doctors 1 items
   {
-    title: '2HTML',
-    description: 'HTML',
+    preview: 'img/gallery/tooth-1670434_640.jpg',
+    original: 'img/gallery/tooth-1670434_1280.jpg',
+    description: 'doctors',
+    f: ['all', 'doctors'],
   },
+  //implants 5 items
   {
-    title: '3HTML',
-    description: 'HTML',
+    preview: 'img/gallery/tooth-1670434_640.jpg',
+    original: 'img/gallery/tooth-1670434_1280.jpg',
+    description: 'implants',
+    f: ['all', 'implants'],
   },
+  //machines 2 items
   {
-    title: '4HTML',
-    description: 'HTML',
+    preview: 'img/gallery/tooth-1670434_640.jpg',
+    original: 'img/gallery/tooth-1670434_1280.jpg',
+    description: 'machines',
+    f: ['all', 'machines'],
   },
+  //other 2 items
   {
-    title: '5HTML',
-    description: 'HTML',
-  },
-  {
-    title: '6HTML',
-    description: 'HTML',
-  },
-  //CSS 5 items
-  {
-    title: '1CSS',
-    description: 'CSS',
-  },
-  {
-    title: '2CSS',
-    description: 'CSS',
-  },
-  {
-    title: '3CSS',
-    description: 'CSS',
-  },
-  {
-    title: '4CSS',
-    description: 'CSS',
-  },
-  {
-    title: '5CSS',
-    description: 'CSS',
-  },
-  //JavaScript 5 items
-  {
-    title: '1JavaScript',
-    description: 'JavaScript',
-  },
-  {
-    title: '2JavaScript',
-    description: 'JavaScript',
-  },
-  {
-    title: '3JavaScript',
-    description: 'JavaScript',
-  },
-  {
-    title: '4JavaScript',
-    description: 'JavaScript',
-  },
-  {
-    title: '5JavaScript',
-    description: 'JavaScript',
-  },
-  //React 8 items
-  {
-    title: '1React',
-    description: 'React',
-  },
-  {
-    title: '2React',
-    description: 'React',
-  },
-  {
-    title: '3React',
-    description: 'React',
-  },
-  {
-    title: '4React',
-    description: 'React',
-  },
-  {
-    title: '5React',
-    description: 'React',
-  },
-  {
-    title: '6React',
-    description: 'React',
-  },
-  {
-    title: '7React',
-    description: 'React',
-  },
-  {
-    title: '8React',
-    description: 'React',
-  },
-  //Node.js 2 items
-  {
-    title: '1React',
-    description: 'Node.js',
-  },
-  {
-    title: '2React',
-    description: 'Node.js',
+    preview: 'img/gallery/tooth-1670434_640.jpg',
+    original: 'img/gallery/tooth-1670434_1280.jpg',
+    description: 'other',
+    f: ['all', 'other'],
   },
 ];
