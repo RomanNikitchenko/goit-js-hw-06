@@ -28,8 +28,7 @@ list.addEventListener('click', e => {
   page = 0;
   limit = 3;
 
-  doStuff({ filterName, page, limit });
-
+  doStuff();
   galleryActive(e.target);
 });
 
@@ -55,11 +54,17 @@ button.addEventListener('click', () => {
   page += 3;
   limit += 3;
 
-  doStuff({ filterName, page, limit });
+  doStuff();
 });
 
 const elementsByFilter = async ({ filterName, page, limit }) => {
   const itemsFilter = await galleryItems.filter(({ f }) => f.includes(filterName));
+  if (!itemsFilter.length) {
+    gallery.innerHTML = '';
+    gallery.style.margin = '0';
+    button.setAttribute('disabled', 'disabled');
+    return;
+  }
   const itemsFilterSlice = itemsFilter
     .slice(page, limit)
     .map(({ preview, original, description }) => {
@@ -67,7 +72,7 @@ const elementsByFilter = async ({ filterName, page, limit }) => {
         <a class="gallery__item" href="${original}">
             <img class="gallery__image" data-source="${original}" src="${preview}" alt="${description}" title="Beautiful Image"/>
         </a>
-      `
+      `;
     })
     .join('');
   itemsFilter.length <= limit
@@ -76,13 +81,14 @@ const elementsByFilter = async ({ filterName, page, limit }) => {
   return itemsFilterSlice;
 };
 
-doStuff({ filterName, page, limit });
+doStuff();
 
-async function doStuff({ filterName, page, limit }) {
+async function doStuff() {
   try {
     const markup = await elementsByFilter({ filterName, page, limit });
-    if (markup)
+    if (markup) {
       page === 0 ? (gallery.innerHTML = markup) : gallery.insertAdjacentHTML('beforeend', markup);
+    }
   } catch (error) {
     button.setAttribute('disabled', 'disabled');
     gallery.innerHTML = `<div>${error.message}</div>`;
@@ -96,11 +102,15 @@ gallery.addEventListener('click', evt => {
     return;
   }
 
-  displaysModal(evt.target.dataset.source);
+  // displaysModal(evt.target.dataset.source);
 });
 
-function displaysModal(image) {
-    basicLightbox.create(`
-		<img width="1400" height="900" src="${image}">
-	`).show();
-}
+// function displaysModal(image) {
+//   basicLightbox
+//     .create(
+//       `
+// 		<img width="1400" height="900" src="${image}">
+// 	`,
+//     )
+//     .show();
+// }
