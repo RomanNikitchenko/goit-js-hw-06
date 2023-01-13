@@ -78,6 +78,7 @@ const elementsByFilter = async ({ filterName, page, limit }) => {
   itemsFilter.length <= limit
     ? button.setAttribute('disabled', 'disabled')
     : button.removeAttribute('disabled');
+  
   return itemsFilterSlice;
 };
 
@@ -102,3 +103,4 @@ gallery.addEventListener('click', evt => {
     return;
   }
 });
+
