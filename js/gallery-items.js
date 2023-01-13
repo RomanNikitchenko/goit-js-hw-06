@@ -28,10 +28,10 @@ export const galleryItems = [
     f: ['all', 'machines'],
   },
   //other 2 items
-  // {
-  //   preview: 'images/tooth-1670434_640.jpg',
-  //   original: 'images/tooth-1670434_1280.jpg',
-  //   description: 'other',
-  //   f: ['all', 'other'],
-  // },
+  {
+    preview: 'images/tooth-1670434_640.jpg',
+    original: 'images/tooth-1670434_1280.jpg',
+    description: 'other',
+    f: ['all', 'other'],
+  },
 ];

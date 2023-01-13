@@ -51,7 +51,7 @@ button.addEventListener('click', () => {
 
   setTimeout(() => (disabled = false), 500);
 
-  page += 3;
+  page = limit;
   limit += 3;
 
   doStuff();
@@ -101,16 +101,4 @@ gallery.addEventListener('click', evt => {
   if (!evt.target.classList.contains('gallery__image')) {
     return;
   }
-
-  // displaysModal(evt.target.dataset.source);
 });
-
-// function displaysModal(image) {
-//   basicLightbox
-//     .create(
-//       `
-// 		<img width="1400" height="900" src="${image}">
-// 	`,
-//     )
-//     .show();
-// }
