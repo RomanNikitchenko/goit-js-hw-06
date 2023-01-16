@@ -1,37 +1,12 @@
-export const galleryItems = [
-  //vinirs 1 items
-  {
-    preview: 'images/tooth-1670434_640.jpg',
-    original: 'images/tooth-1670434_1280.jpg',
-    description: 'vinirs',
-    f: ['all', 'vinirs'],
-  },
-  //doctors 1 items
-  {
-    preview: 'images/tooth-1670434_640.jpg',
-    original: 'images/tooth-1670434_1280.jpg',
-    description: 'doctors',
-    f: ['all', 'doctors'],
-  },
-  //implants 5 items
-  {
-    preview: 'images/tooth-1670434_640.jpg',
-    original: 'images/tooth-1670434_1280.jpg',
-    description: 'implants',
-    f: ['all', 'implants'],
-  },
-  //machines 2 items
-  {
-    preview: 'images/tooth-1670434_640.jpg',
-    original: 'images/tooth-1670434_1280.jpg',
-    description: 'machines',
-    f: ['all', 'machines'],
-  },
-  //other 2 items
-  {
-    preview: 'images/tooth-1670434_640.jpg',
-    original: 'images/tooth-1670434_1280.jpg',
-    description: 'other',
-    f: ['all', 'other'],
-  },
-];
+export const fetchPixabay = async (name, page, limit) => {
+  const APIKEY = '25718667-d0b548046b545cf0dd46ad07c';
+  const response = await fetch(
+    `https://pixabay.com/api/?key=${APIKEY}&q=${name}&image_type=photo&safesearch=true&per_page=${limit}&page=${page}`,
+  );
+  if (!response.ok) {
+    throw new Error(response.status);
+  } else {
+    const picture = await response.json();
+    return picture;
+  }
+};
