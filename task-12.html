@@ -5,25 +5,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>Task 12</title>
-    <link rel="stylesheet" href="css/common.css" />
+    <link rel="stylesheet" href="css/normalize.css" />
+    <link rel="stylesheet" href="css/task-12.css" />
   </head>
   <body>
     <p><a href="index.html">Go back</a></p>
 
-      <ul class="gallery__list">
-        <li class="gallery__active" data-source="car">Car</li>
-        <li data-source="mercedes-benz">Mercedes-Benz</li>
-        <li data-source="maserati">Maserati</li>
-        <li data-source="lamborghini">Lamborghini</li>
-        <li data-source="Ferrari">Ferrari</li>
-        <li data-source="porsche">porsche</li>
-      </ul>
+    <section class="section">
+      
+      <div class="conteiner">
 
-      <div class="gallery"></div>
+        <ul class="filter">
+          <li class="filter__items filter__items--active" data-source="car">Car</li>
+          <li class="filter__items" data-source="mercedes-benz">Mercedes-Benz</li>
+          <li class="filter__items" data-source="maserati">Maserati</li>
+          <li class="filter__items" data-source="lamborghini">Lamborghini</li>
+          <li class="filter__items" data-source="Ferrari">Ferrari</li>
+          <li class="filter__items" data-source="porsche">porsche</li>
+        </ul>
+        
+        <div class="gallery"></div>
+        
+        <button type="button">
+          load more
+        </button>
 
-    <button type="button">
-      load more
-    </button>
+      </div>
+
+    </section>
 
     <script src="js/task-12.js" type="module"></script>
   </body>

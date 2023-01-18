@@ -1,8 +1,8 @@
 import { fetchPixabay } from './gallery-items.js';
 
-const list = document.querySelector('.gallery__list');
+const list = document.querySelector('.filter');
 const gallery = document.querySelector('.gallery');
-const items = document.querySelectorAll('.gallery__list li');
+const items = document.querySelectorAll('.filter li');
 const button = document.querySelector('button');
 
 let filterName = 'car';
@@ -33,13 +33,13 @@ list.addEventListener('click', e => {
 
 function galleryActive(li) {
   items.forEach(item => {
-    if (item.classList.contains('gallery__active')) {
-      item.classList.remove('gallery__active');
+    if (item.classList.contains('filter__items--active')) {
+      item.classList.remove('filter__items--active');
       return;
     }
   });
 
-  li.classList.add('gallery__active');
+  li.classList.add('filter__items--active');
 }
 
 button.addEventListener('click', () => {
@@ -73,6 +73,7 @@ async function doStuff() {
   try {
     const picture = await fetchPixabay(filterName, page, limit);
     const { totalHits, hits } = picture;
+    console.log(totalHits);
 
     if (!hits.length) {
       gallery.innerHTML = '';
@@ -80,14 +81,12 @@ async function doStuff() {
       return;
     }
 
-    if (button.hasAttribute('disabled')) {
-      button.removeAttribute('disabled');
-    }
-
     length += hits.length;
 
     if (totalHits === length) {
       button.setAttribute('disabled', 'disabled');
+    } else if (button.hasAttribute('disabled')) {
+      button.removeAttribute('disabled');
     }
 
     if (page === 1) {
