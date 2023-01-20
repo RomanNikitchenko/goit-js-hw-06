@@ -5,3 +5,7 @@
 .is-open{
     display: block;
 }
+
+.gallery__active{
+    background-color: red;
+}
