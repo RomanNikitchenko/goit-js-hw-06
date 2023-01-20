@@ -56,21 +56,21 @@ function doStuff() {
 
   galleryItem.forEach(item => {
     if (item.dataset.source !== filterName && filterName !== 'all') {
-      if (item.classList.contains('gallery__active')) {
-        item.classList.remove('gallery__active');
+      if (item.classList.contains('is-open')) {
+        item.classList.remove('is-open');
       }
     }
 
     if (item.dataset.source === filterName) {
-      if (limit === 2 && item.classList.contains('gallery__active')) {
-        item.classList.remove('gallery__active');
+      if (limit === 2 && item.classList.contains('is-open')) {
+        item.classList.remove('is-open');
       }
       items.push(item);
     }
 
     if (filterName === 'all') {
-      if (limit === 2 && item.classList.contains('gallery__active')) {
-        item.classList.remove('gallery__active');
+      if (limit === 2 && item.classList.contains('is-open')) {
+        item.classList.remove('is-open');
       }
       items.push(item);
     }
@@ -84,11 +84,11 @@ function doStuff() {
       return;
     }
 
-    if (item.classList.contains('gallery__active')) {
+    if (item.classList.contains('is-open')) {
       continue;
     }
 
-    item.classList.add('gallery__active');
+    item.classList.add('is-open');
   }
 
   items.length <= limit

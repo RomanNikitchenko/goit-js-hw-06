@@ -1,0 +1,7 @@
+.item {
+    display: none;
+}
+
+.is-open{
+    display: block;
+}
