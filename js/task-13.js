@@ -81,6 +81,7 @@ function doStuff() {
 
     if (!item) {
       button.setAttribute('disabled', 'disabled');
+      button.classList.add('des');
       return;
     }
 
@@ -91,7 +92,11 @@ function doStuff() {
     item.classList.add('is-open');
   }
 
-  items.length <= limit
-    ? button.setAttribute('disabled', 'disabled')
-    : button.removeAttribute('disabled');
+  if (items.length <= limit) {
+    button.setAttribute('disabled', 'disabled');
+    button.classList.add('des');
+  } else {
+    button.removeAttribute('disabled');
+    button.classList.remove('des');
+  }
 }
