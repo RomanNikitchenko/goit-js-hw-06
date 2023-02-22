@@ -15,37 +15,43 @@ btn.addEventListener('click', e => {
   setTimeout(() => (disabled = false), 500);
   if (e.target.tagName !== 'BUTTON') return;
 
-  console.log('click button');
+  if (limit === 1) {
+    items.forEach(item => {
+      if (item.classList.contains('motion-pause')) {
+        item.classList.remove('motion-pause');
+      }
+    });
+  }
 
-  items.forEach(item => {
-    if (item.classList.contains('motion-pause')) {
-      item.classList.remove('motion-pause');
-    }
-  });
+  if (limit > 1) toggleAnimation();
 
-  console.log(limit);
-  limit += 1;
+  if (limit < 6) {
+    limit += 1;
+  } else {
+    limit = 2;
+  }
+  
 });
 
-list.addEventListener('click', e => {
-  // не больше одного клика в 500 м/с
-  if (disabled) return;
-  disabled = true;
-  setTimeout(() => (disabled = false), 500);
-  if (e.target.tagName !== 'LI') return;
-
-  console.log('click li');
-
-  //   highlight(e.target);
-});
-
-// function highlight(li) {
-//   items.forEach(item => {
-//     if (item.classList.contains('highlight')) {
-//       item.classList.remove('highlight');
-//       return;
-//     }
-//   });
-
-//   li.classList.add('highlight');
-// }
+function toggleAnimation() {
+  items.forEach((item) => {
+      if (item.classList.contains('box-1')) {
+        item.classList.replace(`motion-move-1`, `motion-move-2`)
+      }
+      if (item.classList.contains('box-2')) {
+        item.classList.replace(`motion-move-2`, `motion-move-3`)
+      }
+      if (item.classList.contains('box-3')) {
+        item.classList.replace(`motion-move-3`, `motion-move-4`)
+      }
+      if (item.classList.contains('box-4')) {
+        item.classList.replace(`motion-move-4`, `motion-move-5`)
+      }
+      if (item.classList.contains('box-5')) {
+        item.classList.replace(`motion-move-5`, `motion-move-6`)
+      }
+      if (item.classList.contains('box-6')) {
+        item.classList.replace(`motion-move-6`, `motion-move-1`)
+      }
+    });
+}

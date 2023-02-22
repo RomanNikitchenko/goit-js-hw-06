@@ -76,57 +76,57 @@ body {
     }
 
     100% {
-        offset-distance: 10%;
+        offset-distance: 15%;
     }
 }
 
 @keyframes move2 {
     0% {
-        offset-distance: 10%;
+        offset-distance: 15%;
     }
 
     100% {
-        offset-distance: 20%;
+        offset-distance: 30%;
     }
 }
 
 @keyframes move3 {
     0% {
-        offset-distance: 20%;
+        offset-distance: 30%;
     }
 
     100% {
-        offset-distance: 30%;
+        offset-distance: 45%;
     }
 }
 
 @keyframes move4 {
     0% {
-        offset-distance: 30%;
+        offset-distance: 45%;
     }
 
     100% {
-        offset-distance: 40%;
+        offset-distance: 60%;
     }
 }
 
 @keyframes move5 {
     0% {
-        offset-distance: 40%;
+        offset-distance: 60%;
     }
 
     100% {
-        offset-distance: 50%;
+        offset-distance: 75%;
     }
 }
 
 @keyframes move6 {
     0% {
-        offset-distance: 50%;
+        offset-distance: 75%;
     }
 
     100% {
-        offset-distance: 60%;
+        offset-distance: 100%;
     }
 }
 
