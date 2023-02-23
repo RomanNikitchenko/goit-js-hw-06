@@ -25,7 +25,7 @@ body {
     height: 40px;
     border-radius: 50%;
     offset-path: path('m400,387c-80.66298,0 -146,-38.9337 -146,-87c0,-48.0663 65.33702,-87 146,-87c80.66298,0 146,38.9337 146,87c0,48.0663 -65.33702,87 -146,87z');
-    animation-duration: 1000ms;
+    animation-duration: 500ms;
     animation-timing-function: ease-in-out;
     animation-iteration-count: 1;
     animation-direction: normal;
@@ -37,12 +37,12 @@ body {
     animation-play-state: paused;
 }
 
-.box-1 {background: hotpink;}
+.box-1 {background: rgb(255, 102, 178);}
 .box-2 {background: rgb(255, 203, 105);}
 .box-3 {background: rgb(160, 255, 105);}
 .box-4 {background: rgb(105, 255, 248);}
 .box-5 {background: rgb(105, 120, 255);}
-.box-6 {background: rgb(243, 73, 73);}
+.box-6 {background: rgb(255, 101, 101);}
 
 
 /* animating object on path */
@@ -72,17 +72,17 @@ body {
 
 @keyframes move1 {
     0% {
-        offset-distance: 0%;
+        offset-distance: 10%;
     }
 
     100% {
-        offset-distance: 15%;
+        offset-distance: 20%;
     }
 }
 
 @keyframes move2 {
     0% {
-        offset-distance: 15%;
+        offset-distance: 20%;
     }
 
     100% {
@@ -96,37 +96,37 @@ body {
     }
 
     100% {
-        offset-distance: 45%;
+        offset-distance: 60%;
     }
 }
 
 @keyframes move4 {
     0% {
-        offset-distance: 45%;
+        offset-distance: 60%;
     }
 
     100% {
-        offset-distance: 60%;
+        offset-distance: 70%;
     }
 }
 
 @keyframes move5 {
     0% {
-        offset-distance: 60%;
+        offset-distance: 70%;
     }
 
     100% {
-        offset-distance: 75%;
+        offset-distance: 80%;
     }
 }
 
 @keyframes move6 {
     0% {
-        offset-distance: 75%;
+        offset-distance: 80%;
     }
 
     100% {
-        offset-distance: 100%;
+        offset-distance: 110%;
     }
 }
 
