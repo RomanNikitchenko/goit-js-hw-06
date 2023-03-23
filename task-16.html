@@ -10,9 +10,9 @@
 </head>
 
 <body>
-    <button id="connect-metamask-button">Подключить MetaMask</button>
+    <!-- <button id="connect-metamask-button">Подключить MetaMask</button> -->
 
-    <script>
+    <!-- <script>
         async function connectToMetaMask() {
             if (typeof window.ethereum !== 'undefined') {
                 try {
@@ -28,6 +28,237 @@
 
         const connectButton = document.getElementById('connect-metamask-button');
         connectButton.addEventListener('click', connectToMetaMask);
+    </script> -->
+
+    <a id="btn-connect" class="header__link">Connect</a>
+    <a id="btn-mint" class="btn btn_orange_promo">MINT</a>
+
+    <!-- <script src="js/jquery-3.5.1.min.js"></script> -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js@3.0.0-rc.5/dist/web3.min.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/web3modal"></script>
+    <script type="text/javascript" src="https://unpkg.com/@walletconnect/web3-provider"></script>
+    <!-- <script type="text/javascript" src="js/contract_seller_prod.js"></script> -->
+    <!-- <script src="js/wow.min.js"></script> -->
+    <!-- <script src="js/script.js"></script> -->
+    <script>
+        const Web3Modal = window.Web3Modal.default;
+        const WalletConnectProvider = window.WalletConnectProvider.default;
+        const EvmChains = window.EvmChains;
+
+        let web3Modal;
+        let provider;
+        let selectedAccount;
+        let web3;
+
+        async function init() {
+            const providerOptions = {
+                walletconnect: {
+                    package: WalletConnectProvider,
+                    options: {
+                        network: "binance",
+                        rpc: {
+                            56: 'https://rpc.ankr.com/bsc'
+                        },
+                    }
+                }
+            };
+
+            web3Modal = new Web3Modal({
+                cacheProvider: true,
+                providerOptions,
+                disableInjectedProvider: false
+            });
+        }
+
+
+        async function fetchAccountData() {
+            // Get a Web3 instance for the wallet
+            web3 = new Web3(provider);
+
+            console.log("Web3 instance is", web3);
+
+            // Get list of accounts of the connected wallet
+            const accounts = await web3.eth.getAccounts();
+
+            // MetaMask does not give you all accounts, only the selected account
+            console.log("Got accounts", accounts);
+            selectedAccount = accounts[0];
+
+            document.querySelector("#btn-connect").textContent = 'Connected';
+        }
+
+
+
+        /**
+         * Fetch account data for UI when
+         * - User switches accounts in wallet
+         * - User switches networks in wallet
+         * - User connects wallet initially
+         */
+        async function refreshAccountData() {
+
+            // If any current data is displayed when
+            // the user is switching acounts in the wallet
+            // immediate hide this data
+
+            // Disable button while UI is loading.
+            // fetchAccountData() will take a while as it communicates
+            // with Ethereum node via JSON-RPC and loads chain data
+            // over an API call.
+            document.querySelector("#btn-connect").setAttribute("disabled", "disabled")
+            await fetchAccountData(provider);
+            document.querySelector("#btn-connect").removeAttribute("disabled")
+        }
+
+
+        /**
+         * Connect wallet button pressed.
+         */
+        async function onConnect() {
+            console.log("Opening a dialog", web3Modal);
+            try {
+                provider = await web3Modal.connect();
+            } catch (e) {
+                console.log("Could not get a wallet connection", e);
+                return;
+            }
+
+            // Subscribe to accounts change
+            provider.on("accountsChanged", (accounts) => {
+                fetchAccountData();
+            });
+
+            // Subscribe to chainId change
+            provider.on("chainChanged", (chainId) => {
+                fetchAccountData();
+            });
+
+            // Subscribe to networkId change
+            provider.on("networkChanged", (networkId) => {
+                fetchAccountData();
+            });
+
+            await refreshAccountData();
+        }
+
+        /**
+         * Disconnect wallet button pressed.
+         */
+        async function onDisconnect() {
+
+            console.log("Killing the wallet connection", provider);
+
+            // TODO: Which providers have close method?
+            if (provider.close) {
+                await provider.close();
+
+                // If the cached provider is not cleared,
+                // WalletConnect will default to the existing session
+                // and does not allow to re-scan the QR code with a new wallet.
+                // Depending on your use case you may want or want not his behavir.
+                await web3Modal.clearCachedProvider();
+                provider = null;
+            }
+
+            selectedAccount = null;
+
+            // Set the UI back to the initial state
+            document.querySelector("#prepare").style.display = "block";
+            document.querySelector("#connected").style.display = "none";
+        }
+
+        async function onMint() {
+            await onConnect();
+            const web3 = new Web3(provider);
+            const accounts = await web3.eth.getAccounts();
+
+            // MetaMask does not give you all accounts, only the selected account
+            console.log("Got accounts", accounts);
+            selectedAccount = accounts[0];
+
+            const NFT_ABI = [
+                {
+                    "inputs": [
+                        {
+                            "internalType": "string",
+                            "name": "_name",
+                            "type": "string"
+                        },
+                        {
+                            "internalType": "string",
+                            "name": "_symbol",
+                            "type": "string"
+                        }
+                    ],
+                    "stateMutability": "nonpayable",
+                    "type": "constructor"
+                },
+                {
+                    "inputs": [
+                        {
+                            "internalType": "uint256",
+                            "name": "tokenId",
+                            "type": "uint256"
+                        }
+                    ],
+                    "name": "getNFTData",
+                    "outputs": [
+                        {
+                            "internalType": "uint256",
+                            "name": "price",
+                            "type": "uint256"
+                        },
+                        {
+                            "internalType": "string",
+                            "name": "image",
+                            "type": "string"
+                        }
+                    ],
+                    "stateMutability": "view",
+                    "type": "function"
+                }
+            ];
+
+            const NFT_ADDRESS = '0x1234567890123456789012345678901234567890';
+
+            // Создаем экземпляр контракта NFT
+            const nftContract = new web3.eth.Contract(NFT_ABI, NFT_ADDRESS);
+
+            let index;
+
+            for (let i = 1; i <= 100; i++) {
+                let x = Math.floor(Math.random() * (3500 - 60) + 60);
+
+                if (!(await nftContract.methods.uri(x).call({ from: selectedAccount }, function (error, result) { }))) {
+                    index = x;
+                    break
+                }
+            }
+
+            console.log(index)
+
+            nftContract.methods.mintAndTransfer([index, `ipfs://bafybeialz5rdtk6l3e74ad7l6bil2ewg3lthyttqp7j7ab23kyq5fwcaxm/${index}.json`,
+                "1",
+                [["0x73a55730442db171bbfb09f961bf57724f43c7cb", "500"]],
+                [["0x73a55730442db171bbfb09f961bf57724f43c7cb", "500"]],
+                [[0x1]]], selectedAccount, 1)
+                .send({
+                    from: selectedAccount,
+                    value: 500000000000000000,
+                    gas: 500000 // 0.5 BNB
+                }).on('error', function (error) { console.log(error) }).then(function (receipt) { })
+        }
+
+
+        /**
+         * Main entry point.
+         */
+        window.addEventListener('load', async () => {
+            init();
+            document.querySelector("#btn-connect").addEventListener("click", onConnect);
+            document.querySelector("#btn-mint").addEventListener("click", onMint);
+        });
     </script>
 </body>
 
