@@ -7,7 +7,7 @@
 
   let timerId = null;
 
-  let dateBase = '2023-03-31 00:00:00';
+  let dateBase = '2024-03-31 00:00:00';
   const appointedTime = moment(dateBase, 'YYYY-MM-DD HH:mm:ss');
 
   timerId = setInterval(() => {
