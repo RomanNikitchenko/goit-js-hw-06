@@ -5,94 +5,77 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Task 14</title>
+    <title>Task 16</title>
 </head>
 
 <body>
     <p><a href="index.html">Go back</a></p>
     
     <div class="present__countdown">
-        <!-- <div class="times" id="days"><span data-days>00</span></div> -->
-        <div class="times" id="hours1"><span>00</span></div>
-        <div class="times" id="minutes1"><span>00</span></div>
-        <div class="times" id="seconds1"><span>00</span></div>
-
-        <br>
-
-        <div class="times" id="hours2"><span>00</span></div>
-        <div class="times" id="minutes2"><span>00</span></div>
-        <div class="times" id="seconds2"><span>00</span></div>
-
-        <br>
-
-        <div class="times" id="hours3"><span>00</span></div>
-        <div class="times" id="minutes3"><span>00</span></div>
-        <div class="times" id="seconds3"><span>00</span></div>
+        <div class="field">
+            <span class="value" data-days>00</span>
+            <span class="label">Days</span>
+        </div>
+        <div class="field">
+            <span class="value" data-hours>00</span>
+            <span class="label">Hours</span>
+        </div>
+        <div class="field">
+            <span class="value" data-minutes>00</span>
+            <span class="label">Minutes</span>
+        </div>
+        <div class="field">
+            <span class="value" data-seconds>00</span>
+            <span class="label">Seconds</span>
+        </div>
+    </div>
+    
+    <br>
+    
+    <div class="present__countdown">
+        <div class="field">
+            <span class="value" data-days>00</span>
+            <span class="label">Days</span>
+        </div>
+        <div class="field">
+            <span class="value" data-hours>00</span>
+            <span class="label">Hours</span>
+        </div>
+        <div class="field">
+            <span class="value" data-minutes>00</span>
+            <span class="label">Minutes</span>
+        </div>
+        <div class="field">
+            <span class="value" data-seconds>00</span>
+            <span class="label">Seconds</span>
+        </div>
+    </div>
+    
+    <br>
+    
+    <div class="present__countdown">
+        <div class="field">
+            <span class="value" data-days>00</span>
+            <span class="label">Days</span>
+        </div>
+        <div class="field">
+            <span class="value" data-hours>00</span>
+            <span class="label">Hours</span>
+        </div>
+        <div class="field">
+            <span class="value" data-minutes>00</span>
+            <span class="label">Minutes</span>
+        </div>
+        <div class="field">
+            <span class="value" data-seconds>00</span>
+            <span class="label">Seconds</span>
+        </div>
     </div>
 
-    <script>
-        // JavaScript-код, который получает значение переменной из PHP
-        const hoursBlock = document.getElementById("hours1");
-        const minutesBlock = document.getElementById("minutes1");
-        const secondsBlock = document.getElementById("seconds1");
-
-        const hoursBlock2 = document.getElementById("hours2");
-        const minutesBlock2 = document.getElementById("minutes2");
-        const secondsBlock2 = document.getElementById("seconds2");
-
-        const hoursBlock3 = document.getElementById("hours3");
-        const minutesBlock3 = document.getElementById("minutes3");
-        const secondsBlock3 = document.getElementById("seconds3");
-
-        // Set the end time for the countdown (change this to your desired end time)
-        const endTime = new Date(Date.UTC(2023, 3, 4, 10, 9, 9, 999));
-        endTime.setHours(endTime.getHours() - 2);
-        
-        function updateTimer() {
-            // Calculate the time remaining until the end time
-            let remainingTime = endTime - new Date();
-
-            // If the end time has already passed, clear the interval and display 00:00:00
-            if (remainingTime <= 0) {
-                clearInterval(interval);
-                hoursBlock.innerText = "00";
-                minutesBlock.innerText = "00";
-                secondsBlock.innerText = "00";
-
-                hoursBlock2.innerText = "00";
-                minutesBlock2.innerText = "00";
-                secondsBlock2.innerText = "00";
-
-                hoursBlock3.innerText = "00";
-                minutesBlock3.innerText = "00";
-                secondsBlock3.innerText = "00";
-                return;
-            }
-
-            // Calculate the hours, minutes, and seconds remaining
-            const hours = Math.floor(remainingTime / (1000 * 60 * 60));
-            const minutes = Math.floor((remainingTime % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((remainingTime % (1000 * 60)) / 1000);
-
-            // Update the timer display
-            hoursBlock.innerText = hours < 10 ? "0" + hours : hours;
-            minutesBlock.innerText = minutes < 10 ? "0" + minutes : minutes;
-            secondsBlock.innerText = seconds < 10 ? "0" + seconds : seconds;
-
-            hoursBlock2.innerText = hours < 10 ? "0" + hours : hours;
-            minutesBlock2.innerText = minutes < 10 ? "0" + minutes : minutes;
-            secondsBlock2.innerText = seconds < 10 ? "0" + seconds : seconds;
-
-            hoursBlock3.innerText = hours < 10 ? "0" + hours : hours;
-            minutesBlock3.innerText = minutes < 10 ? "0" + minutes : minutes;
-            secondsBlock3.innerText = seconds < 10 ? "0" + seconds : seconds;
-        }
-
-        // Update the timer immediately and then every second
-        updateTimer();
-        const interval = setInterval(updateTimer, 1000);
-
-    </script>
+    <!-- CDN Moment.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    
+    <script src="js/task-16.js" type="module"></script>
 </body>
 
 </html>
