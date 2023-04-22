@@ -21,8 +21,6 @@
     opacity: 1;
     z-index: 300;
     padding: 20px;
-    
-
     overflow: hidden;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
@@ -46,16 +44,6 @@
     flex-flow: column nowrap;
     align-items: center;
     justify-content: center;
-}
-
-.movie {
-    display: flex;
-    width: 280px;
-    height: 2000px;
-    margin: auto;
-    background-color: #ffffff;;
-    /* overflow-y: auto; */
-    border: 1ox solid green;
 }
 
 .modal-is-open {
