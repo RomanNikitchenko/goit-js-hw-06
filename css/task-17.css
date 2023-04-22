@@ -51,12 +51,11 @@
 .movie {
     display: flex;
     width: 280px;
-    /* max-width: 100%;
-    min-height: 958px; */
+    height: 2000px;
     margin: auto;
     background-color: #ffffff;;
-    overflow-y: auto;
-    transform: scale(1);
+    /* overflow-y: auto; */
+    border: 1ox solid green;
 }
 
 .modal-is-open {
