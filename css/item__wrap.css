@@ -1,3 +1,8 @@
+.item__content{
+    max-width: 500px;
+    border: 1px solid green;
+}
+
 .item__wrap {
     position: relative;
     display: flex;
