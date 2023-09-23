@@ -1,0 +1,27 @@
+#image-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    
+    margin: 20px;
+}
+
+#image-info {
+    display: none;
+    margin: 10px 0;
+}
+
+#delete-button {
+    display: none;
+    margin: 10px 0;
+}
+
+#upload-button {
+    margin: 10px 0;
+}
+
+#uploaded-image {
+    max-width: 300px;
+    margin: auto;
+}
