@@ -1,11 +1,25 @@
-import { deactivateAllSlides } from './deactivateAllSlides.js';
-import { activateSlide } from './activateSlide.js';
+import { updateSlider } from './updateSlider.js';
 export const initializeSlider = () => {
   const slides = document.querySelectorAll('.slide');
-  slides.forEach(slide => {
+  const prevButton = document.querySelector('.prev-button');
+  const nextButton = document.querySelector('.next-button');
+
+  let currentSlideIndex = 0;
+
+  prevButton.addEventListener('click', () => {
+    currentSlideIndex = (currentSlideIndex - 1 + slides.length) % slides.length;
+    updateSlider(slides, currentSlideIndex);
+  });
+
+  nextButton.addEventListener('click', () => {
+    currentSlideIndex = (currentSlideIndex + 1) % slides.length;
+    updateSlider(slides, currentSlideIndex);
+  });
+
+  slides.forEach((slide, index) => {
     slide.addEventListener('click', () => {
-      deactivateAllSlides(slides);
-      activateSlide(slide);
+      currentSlideIndex = index;
+      updateSlider(slides, currentSlideIndex);
     });
   });
 };
